@@ -1,0 +1,74 @@
+Terdapat beberapa metode yang digunakan untuk mengolah data dan memberikan rekomendasi kebijakan 
+publik berdasarkan jumlah penduduk lanjut usia di Jakarta Timur. Berikut adalah penjelasan mengenai metode yang digunakan:
+
+1. Import Libraries
+Pandas (pd): Digunakan untuk manipulasi data dan analisis data berbasis tabel (DataFrame).
+Numpy (np): Digunakan untuk operasi numerik dan perhitungan, seperti kuantile data dan kondisi.
+KMeans (dari sklearn): Algoritma untuk clustering (pengelompokan) data, yang digunakan untuk mengelompokkan wilayah berdasarkan jumlah penduduk lanjut usia.
+Matplotlib (plt): Digunakan untuk visualisasi data dalam bentuk grafik atau diagram.
+
+2. Preprocessing
+Konversi Tanggal: Kolom "tahun" pada dataset diubah menjadi format datetime menggunakan pd.to_datetime() untuk memastikan 
+bahwa analisis berbasis tahun dapat dilakukan dengan benar.
+Penyaringan Data: Data untuk tahun 2015-2017 dihapus menggunakan kondisi ~data['tahun'].dt.year.isin([2015, 2016, 2017]) 
+untuk fokus pada data tahun-tahun lainnya.
+
+3. Pengelompokan (Clustering) dengan K-Means
+Agregasi Data: Data jumlah penduduk lanjut usia di kelompokkan berdasarkan nama kabupaten/kota menggunakan groupby() dan sum() 
+untuk mendapatkan total jumlah penduduk lanjut usia per kabupaten/kota.
+KMeans Clustering: Data jumlah penduduk lanjut usia per kabupaten/kota dikelompokkan menggunakan algoritma KMeans dari scikit-learn.
+Pemilihan Jumlah Cluster: Jumlah cluster ditentukan sebanyak 3, yaitu Populasi Rendah, Sedang, dan Tinggi.
+Prediksi Cluster: Algoritma KMeans digunakan untuk memprediksi cluster berdasarkan jumlah penduduk.
+Labeling Cluster: Setiap cluster diberi label yang sesuai menggunakan pemetaan (dictionary) 
+ke dalam kategori: 'Populasi Sedang', 'Populasi Tinggi', dan 'Populasi Rendah'.
+
+4. Rekomendasi Kebijakan untuk Jakarta Timur
+Seleksi Data: Dataset difilter untuk hanya menyertakan data yang berasal dari wilayah "Jakarta Timur".
+Agregasi Data per Kecamatan: Data jumlah penduduk lanjut usia di Jakarta Timur diolah per kecamatan menggunakan groupby() dan sum().
+Ambang Batas (Thresholds): Ambang batas untuk jumlah penduduk digunakan untuk membagi kecamatan menjadi tiga kategori:
+Ambang Batas Tinggi: Kuartil ke-75 (quantile(0.75)) untuk menentukan kecamatan dengan jumlah penduduk lanjut usia tinggi.
+Ambang Batas Rendah: Kuartil ke-25 (quantile(0.25)) untuk menentukan kecamatan dengan jumlah penduduk lanjut usia rendah.
+Rekomendasi Kebijakan: Berdasarkan ambang batas yang ditentukan, setiap kecamatan diberi rekomendasi kebijakan yang sesuai:
+Jika jumlah penduduk lebih tinggi dari kuartil ke-75, maka rekomendasinya adalah "Tambah Fasilitas Kesehatan".
+Jika jumlah penduduk lebih rendah dari kuartil ke-25, maka rekomendasinya adalah "Tingkatkan Kegiatan Sosial".
+Jika jumlah penduduk berada di antara kuartil ke-25 dan ke-75, rekomendasinya adalah "Pantau dan Evaluasi".
+
+5. Visualisasi
+Grafik Cluster: Grafik batang digunakan untuk memvisualisasikan pengelompokan kabupaten/kota berdasarkan jumlah penduduk lanjut usia.
+Grafik Rekomendasi Kebijakan: Grafik batang yang menunjukkan kecamatan di Jakarta Timur dengan rekomendasi kebijakan yang telah diberikan.
+
+6. Simpan Hasil ke CSV
+Setelah analisis, hasil rekomendasi kebijakan disimpan ke dalam file CSV menggunakan to_csv() untuk dokumentasi lebih lanjut.
+
+Metode yang Digunakan:
+K-Means Clustering: Untuk mengelompokkan data jumlah penduduk lanjut usia berdasarkan jumlah yang ada.
+Agregasi dan Grouping: Digunakan untuk menghitung total jumlah penduduk berdasarkan kabupaten/kota atau kecamatan.
+Quantile-Based Thresholding: Untuk menentukan kategori populasi tinggi dan rendah berdasarkan kuartil data.
+Rekomendasi Berdasarkan Kondisi: Menggunakan kondisi untuk memberi rekomendasi kebijakan.
+
+
+Metode yang digunakan dalam kode ini termasuk dalam unsupervised learning (pembelajaran tanpa pengawasan), terutama pada bagian K-Means Clustering.
+
+Berikut penjelasannya:
+
+K-Means Clustering (Unsupervised Learning):
+Unsupervised Learning adalah pendekatan di mana model mencoba untuk menemukan 
+pola atau struktur dalam data tanpa menggunakan label atau target yang diketahui.
+Dalam kasus ini, K-Means digunakan untuk mengelompokkan kabupaten/kota berdasarkan jumlah penduduk lanjut usia. 
+Tidak ada informasi atau label sebelumnya yang memberi tahu model bagaimana data seharusnya dikelompokkan. 
+Model hanya menganalisis pola dalam data (jumlah penduduk) dan mencoba untuk menemukan pola-pola yang tersembunyi (cluster) sendiri.
+Hasilnya adalah pengelompokan yang terdiri dari Populasi Tinggi, Populasi Sedang, dan Populasi Rendah tanpa memerlukan data label yang sudah ada sebelumnya.
+
+Quantile-Based Thresholding:
+Proses ini lebih mirip dengan metode rule-based decision-making, 
+bukan bagian dari supervised atau unsupervised learning 
+karena hanya menggunakan statistik untuk memutuskan ambang batas (threshold) untuk memberikan rekomendasi kebijakan berdasarkan jumlah penduduk.
+Secara keseluruhan, algoritma K-Means yang digunakan untuk mengelompokkan kabupaten/kota termasuk dalam unsupervised learning, 
+karena tujuan utamanya adalah menemukan pola tanpa adanya label atau target yang dipengaruhi oleh proses pelatihan sebelumnya.
+
+Kesimpulan
+unsupervised learning dengan metode K-Means clustering untuk mengelompokkan kabupaten/kota berdasarkan jumlah penduduk lanjut usia.
+Dengan K-Means, data dibagi menjadi tiga cluster: Populasi Tinggi, Populasi Sedang, dan Populasi Rendah. 
+Selain itu, data untuk Jakarta Timur dianalisis lebih lanjut untuk memberikan rekomendasi kebijakan berbasis ambang batas (quantile) jumlah penduduk. 
+Hasil akhirnya berupa visualisasi untuk memperlihatkan pengelompokan dan rekomendasi kebijakan yang disarankan,
+ yang disimpan dalam file CSV untuk dokumentasi lebih lanjut.
