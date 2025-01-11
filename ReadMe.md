@@ -29,7 +29,7 @@ Proyek ini bertujuan untuk memberikan rekomendasi kebijakan publik berdasarkan d
    - Membuat visualisasi berupa diagram batang yang menunjukkan rekomendasi kebijakan untuk setiap kelurahan.
 
 5. **Ekspor Hasil:**
-   - Hasil analisis dan rekomendasi disimpan dalam file CSV bernama `Rekomendasi_Kebijakan_Jakarta_Timur.csv`.
+   - Hasil analisis dan rekomendasi disimpan dalam file CSV
 
 ### Struktur Proyek
 
@@ -81,14 +81,4 @@ Proyek ini bertujuan untuk memberikan rekomendasi kebijakan publik berdasarkan d
 - Dataset harus memiliki kolom `Nama_Kabupaten_Kota`, `Kelurahan`, `Jumlah Penduduk`, dan `Tahun` agar skrip dapat berjalan dengan benar.
 - Parameter ambang batas dapat disesuaikan jika diperlukan.
 
-### Lisensi
-
-Proyek ini dilisensikan di bawah MIT License.
-
-### Kontribusi
-
-Jika Anda ingin memberikan kontribusi, silakan buat pull request atau ajukan masalah pada repository ini.
-
----
-
-Dikembangkan oleh: [Nama Anda]
+Dikembangkan oleh: [Fakhri Andika]
