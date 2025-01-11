@@ -82,4 +82,4 @@ Proyek ini bertujuan untuk memberikan rekomendasi kebijakan publik berdasarkan d
 - Parameter ambang batas dapat disesuaikan jika diperlukan.
 
 Dikembangkan oleh: [Fakhri Andika]
-Link PPT : [Klik disini]("https://www.canva.com/design/DAGbnsmKQnE/jXaG_ayoPpzaOSdiMJrwZQ/edit")
+Link PPT : [Klik disini](https://www.canva.com/design/DAGbnsmKQnE/jXaG_ayoPpzaOSdiMJrwZQ/edit)
